@@ -1,13 +1,14 @@
 package com.jorgedirkx.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Bug {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bugId;
 
     @Column(name="bugissue")
@@ -37,6 +38,10 @@ public class Bug {
 
     public void setIssue(String issue) {
         this.issue = issue;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
     }
 
     public void setProjects(Set<Project> projects) {

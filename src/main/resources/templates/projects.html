@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Project list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+
+</head>
+<body>
+<div class="container">
+    <div class="col-md-4">
+        <h1>Projects</h1>
+
+    <div style="padding:0 20px", class=".col-lg-">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Employee</th>
+                <th>Status</th>
+                <th>Bug</th>
+                <th>Actions</th>
+            </tr>
+
+            <tr th:each = "project: ${projects}">
+                <td th:text="${project.name}"></td>
+                <td th:text="${project.employee}"></td>
+                <td th:text="${project.status}"></td>
+                <td>
+				<span th:each="bug,iterStat : ${project.bugs}">
+					<span th:text="${bug.bugissue}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+                </td>
+                <td>
+                    <a th:href="@{/addProjectBug/{id}(id=${project.id})}" class="btn btn-primary btn-xs">Add Bug</a>
+                    <a th:href="@{/edit/{id}(id=${project.id})}" class="btn btn-primary btn-xs">Edit</a>
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${project.id})}" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <a href="/add" class="btn btn-primary">Add Project</a>
+    </div>
+</div>
+</body>
+</html>

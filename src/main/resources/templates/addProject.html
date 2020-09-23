@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>New Project</h1>
+    <div class=".col-lg-">
+        <form th:object="${project}" th:action="@{save}" action="#" method="post">
+            <input type="text" th:field="*{name}" class="form-control"
+                   placeholder="name" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <input type="text" th:field="*{employee}" class="form-control"
+                   placeholder="employee" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <input type="text" th:field="*{status}" class="form-control"
+                   placeholder="status" />
+            <input type="submit" class="btn btn-primary" value="Save">
+        </form>
+    </div>
+</div>
+</body>
+</html>

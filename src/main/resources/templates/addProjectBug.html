@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Bug</h1>
+    <form th:action="@{/project/{id}/bugs(id=${project.id})}" method="get" enctype="multipart/form-data" >
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Project Info</div>
+                <div class="panel-body" style="padding-left: 5px;">
+                    Name: <b th:text="${project.name}"/><br/>
+                    Employee: <span th:text="${project.employee}" /><br/>
+                    Status: <span th:text="${project.status}" /><br/>
+                    <br/>Bugs:
+                    <span th:each="bug: ${project.bugs}">
+					<br/>&nbsp;&nbsp;<span th:text="${bug.issue}" />
+				</span>
+                    <br/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" name="bugId">
+                    <option th:each="bug : ${bugs}"
+                            th:value="${bug.bugId}"
+                            th:text="${bug.issue}">Bug</option>
+                </select>
+            </div>
+            <input type="submit" name="action" class="btn btn-primary" value="Save"></input>
+            <input type="submit" name="action" class="btn btn-default" value="Cancel"></input>
+        </div>
+    </form>
+</div>
+</body>
+</html>

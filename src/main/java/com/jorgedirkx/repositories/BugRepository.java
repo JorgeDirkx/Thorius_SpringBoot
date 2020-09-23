@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BugRepository extends CrudRepository<Bug,Long> {
 
-    List<Bug> findByName(String name);
+    /*List<Bug> findByName(String name);*/
 }
