@@ -1,0 +1,17 @@
+==================================
+Thorius: issue tracking application
+===================================
+List of technologies used:
+* Spring Boot
+* Spring MVC
+* JPA/Hibernate
+* MySQl DB
+* Thymeleaf
+* Bootstrap
+
+The goal is to add new Bugs entity which is linked to Projects with many-to-many link.
+User can also set up new projects.
+
+Many-to-many relationship is defined in Project and Bug entity classes.
+@JointTable annotation creates join table.
+@JoinColumn annotation specifies a column for joining an entity association.

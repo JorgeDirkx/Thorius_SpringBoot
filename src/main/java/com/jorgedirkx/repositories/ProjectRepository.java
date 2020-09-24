@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ProjectRepository extends CrudRepository<Project,Long> {
+public interface ProjectRepository extends CrudRepository<Project,Integer> {
 
     List<Project> findByName(String name);
 

@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+//Classic controllers can be annotated with the @Controller annotation. This is simply a specialization of the @Component class and allows implementation classes to be autodetected through the classpath scanning.
+//
+//@Controller is typically used in combination with a @RequestMapping annotation used on request handling methods.
 @Controller
 public class ProjectController {
 
+    // by declaring all the bean dependencies in a Spring configuration file, Spring container can autowire relationships between collaborating beans. This is called Spring bean autowiring.
     @Autowired
     private ProjectRepository repository;
 
@@ -37,8 +41,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/edit/{id}")
-    public String editProject(@PathVariable("id") Long projectId, Model model)
-            throws ResourceNotFoundException {
+    public String editProject(@PathVariable("id") int projectId, Model model){
         model.addAttribute("project", repository.findById(projectId));
         return "editProject";
         /*
@@ -54,13 +57,13 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteProject(@PathVariable("id") Long projectId, Model model) {
+    public String deleteProject(@PathVariable("id") int projectId, Model model) {
         repository.deleteById(projectId);
         return "redirect:/projects";
     }
 
     @RequestMapping(value = "addProjectBug/{id}", method = RequestMethod.GET)
-    public String addBug(@PathVariable("id") Long id, Model model) {
+    public String addBug(@PathVariable("id") int id, Model model) {
 
         model.addAttribute("bug", new Bug());
 
@@ -71,7 +74,7 @@ public class ProjectController {
 
     @RequestMapping(value = "/project/{id}/bugs", method = RequestMethod.GET)
     public String projectsAddBug(@RequestParam(value = "action", required = true)String action,
-                                 @PathVariable("id") Long id, @RequestParam("bugs") Long bugId, Model model) {
+                                 @PathVariable("id") int id, @RequestParam("bugs") int bugId, Model model) {
         Optional<Bug> bug = bugRepository.findById(bugId);
         Optional<Project> project = repository.findById(id);
 
@@ -86,7 +89,7 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
-        model.addAttribute("developers", repository.findAll());
+        model.addAttribute("cancel", repository.findAll());
         return "redirect:/projects";
     }
 

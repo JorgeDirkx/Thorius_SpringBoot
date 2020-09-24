@@ -8,7 +8,7 @@ import java.util.Set;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @Column(name ="name")
     private String name;
     @Column(name ="employee")
@@ -18,13 +18,13 @@ public class Project {
 
 
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name="project_bug", joinColumns = {@JoinColumn(name="id")}, inverseJoinColumns = {@JoinColumn(name ="bugid")})
+    @JoinTable(name="project_bug", joinColumns = {@JoinColumn(name="id")}, inverseJoinColumns = {@JoinColumn(name ="Id_Bug")})
     private Set<Bug> bugs= new HashSet<Bug>(0);
 
     public Project() {
     }
 
-    public Project(long id, String name, String employee, String status, Set<Bug>bugs) {
+    public Project(int id, String name, String employee, String status, Set<Bug>bugs) {
         this.id = id;
         this.name = name;
         this.employee = employee;
@@ -36,7 +36,7 @@ public class Project {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -7,9 +7,11 @@ import java.util.Set;
 @Entity
 public class Bug {
 
+    //The @Idannotation is inherited from javax.persistence.Id， indicating the member field below is the primary key of current entity
     @Id
+    //The @GeneratedValue annotation is to configure the way of increment of the specified column(field)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long bugId;
+    private int bugId;
 
     @Column(name="bugissue")
     private String issue;
@@ -32,7 +34,7 @@ public class Bug {
         return issue;
     }
 
-    public void setBugId(long bugId) {
+    public void setBugId(int bugId) {
         this.bugId = bugId;
     }
 
