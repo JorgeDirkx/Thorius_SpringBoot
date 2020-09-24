@@ -17,18 +17,12 @@
                     Employee: <span th:text="${project.employee}" /><br/>
                     Status: <span th:text="${project.status}" /><br/>
                     <br/>Bugs:
-                    <span th:each="bug: ${project.bugs}">
-					<br/>&nbsp;&nbsp;<span th:text="${bug.issue}" />
+                    <input  th:object="${bug}"type="text" th:field="*{issue}" class="form-control"
+                           placeholder="bug" />
+                    <div style="clear: both; display: block; height: 10px;"></div>
 				</span>
                     <br/>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <select class="form-control" name="bugId">
-                    <option th:each="bug : ${bugs}"
-                            th:value="${bug.bugId}"
-                            th:text="${bug.issue}">Bug</option>
-                </select>
             </div>
             <input type="submit" name="action" class="btn btn-primary" value="Save"></input>
             <input type="submit" name="action" class="btn btn-default" value="Cancel"></input>
